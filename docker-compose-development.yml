@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: dev
+    container_name: frontend-dev
+    ports:
+      - "3000:80"
+    networks:
+      - my_app_network
+
+networks:
+  my_app_network:
+    external: true
+
