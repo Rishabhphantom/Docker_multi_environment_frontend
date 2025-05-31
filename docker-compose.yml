@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: dev
+    container_name: frontend-dev
+    ports:
+      - "3000:80"
+    networks:
+      - my_app_network
+
+  frontend-qa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: qa
+    container_name: frontend-qa
+    ports:
+      - "3001:80"
+    networks:
+      - my_app_network
+
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: prod
+    container_name: frontend-prod
+    ports:
+      - "3002:80"
+    networks:
+      - my_app_network
+
+networks:
+  my_app_network:
+    external: true
