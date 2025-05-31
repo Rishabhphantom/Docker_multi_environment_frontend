@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: prod
+    container_name: frontend-prod
+    ports:
+      - "3002:80"
+    networks:
+      - my_app_network
+
+networks:
+  my_app_network:
+    external: true
+
